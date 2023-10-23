@@ -1,0 +1,22 @@
+name: SchoolSMP
+version: '1.0-SNAPSHOT'
+main: net.crewco.schoolsmp.SchoolSMP
+commands:
+  mmc-fire:
+    description: Creates a Magic Circle
+    usage: /mmc
+  mmc-water:
+    description: Creates a Magic Circle
+    usage: /mmc
+  mmc-earth:
+    description: Creates a Magic Circle
+    usage: /mmc
+  mmc-air:
+    description: Creates a Magic Circle
+    usage: /mmc
+  mmc-portal:
+    description: Creates a Magic Circle
+    usage: /mmc
+  mmc-vanish:
+    description: Creates a Magic Circle
+    usage: /mmc
