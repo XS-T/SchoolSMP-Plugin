@@ -62,10 +62,10 @@ public class AirCircleCommand implements CommandExecutor {
                     }.runTaskTimer(SchoolSMP.getPlugin(), 0, 1);
 
                     // Set cooldown
-                    setCooldown(player.getName());
+                    setCooldown(player.getName(), COOLDOWN_SECONDS);
                     return true;
                 } else {
-                    player.sendMessage("You must wait " + (COOLDOWN_SECONDS - getCooldown(player.getName())) + " seconds before using this command again!");
+                    player.sendMessage("You must wait " + getCooldown(player.getName()) + " seconds before using this command again!");
                 }
             }
         }
@@ -74,23 +74,24 @@ public class AirCircleCommand implements CommandExecutor {
 
     private boolean checkCooldown(String playerName) {
         if (cooldowns.containsKey(playerName)) {
-            long lastUsage = cooldowns.get(playerName);
             long currentTime = System.currentTimeMillis() / 1000; // Convert to seconds
-            return currentTime - lastUsage >= COOLDOWN_SECONDS;
+            long cooldownEndTime = cooldowns.get(playerName);
+
+            return currentTime >= cooldownEndTime;
         }
         return true;
     }
 
-    private void setCooldown(String playerName) {
+    private void setCooldown(String playerName, int cooldownSeconds) {
         long currentTime = System.currentTimeMillis() / 1000; // Convert to seconds
-        cooldowns.put(playerName, currentTime);
+        long cooldownEndTime = currentTime + cooldownSeconds;
+        cooldowns.put(playerName, cooldownEndTime);
     }
 
     private long getCooldown(String playerName) {
         if (cooldowns.containsKey(playerName)) {
-            long lastUsage = cooldowns.get(playerName);
+            long cooldownEndTime = cooldowns.get(playerName);
             long currentTime = System.currentTimeMillis() / 1000; // Convert to seconds
-            long cooldownEndTime = lastUsage + COOLDOWN_SECONDS;
 
             if (currentTime < cooldownEndTime) {
                 // If the cooldown has not expired yet, return the remaining time in seconds

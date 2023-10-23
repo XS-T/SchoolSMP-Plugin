@@ -20,7 +20,7 @@ public final class SchoolSMP extends JavaPlugin {
 
         //Misc
         getCommand("mmc-portal").setExecutor(new TeleportationCircleCommand());
-        getCommand("mmc-vanish").setExecutor(new VanishingCircleCommand());
+        getCommand("mmc-vanish").setExecutor(new VanishCircleCommand());
 
         //Logger
         getLogger().info("Your plugin has been enabled!");

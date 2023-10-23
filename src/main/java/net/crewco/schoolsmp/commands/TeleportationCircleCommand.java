@@ -54,6 +54,7 @@ public class TeleportationCircleCommand implements CommandExecutor {
                                 // Teleport nearby players to the specified location
                                 nearbyPlayer.teleport(teleportLocation);
                                 nearbyPlayer.sendMessage("You have been teleported to the specified location.");
+                                player.sendMessage("Teleported nearby players and yourself to the specified location.");
                                 playPortalParticles(nearbyPlayer.getLocation());
                             }
                         }
@@ -61,7 +62,6 @@ public class TeleportationCircleCommand implements CommandExecutor {
                         // Teleport the player who triggered the command
                         playPortalParticles(player.getLocation());
                         player.teleport(teleportLocation);
-                        player.sendMessage("Teleported nearby players and yourself to the specified location.");
                         playPortalParticles(teleportLocation);
 
                         // Set cooldown
