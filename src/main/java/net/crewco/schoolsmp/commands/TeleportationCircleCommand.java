@@ -25,7 +25,7 @@ public class TeleportationCircleCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if (player.hasPermission("portal.use")) {
+            if (player.hasPermission("mmc.portal")) {
                 if (args.length < 3 || args.length > 4) {
                     player.sendMessage("Usage: /mmc-portal <x> <y> <z> [world]");
                     return true;
@@ -123,21 +123,5 @@ public class TeleportationCircleCommand implements CommandExecutor {
             Location particleLocation = center.clone().add(xOffset, 1, zOffset);
             world.playEffect(particleLocation, Effect.ENDER_SIGNAL, 0);
         }
-    }
-
-    private void startCountdown(Player player) {
-        new BukkitRunnable() {
-            int countdown = PORTAL_PARTICLE_DURATION / 20;
-
-            @Override
-            public void run() {
-                if (countdown <= 0) {
-                    this.cancel();
-                } else {
-                    player.sendMessage("Teleporting in " + countdown + " seconds...");
-                    countdown--;
-                }
-            }
-        }.runTaskTimer(SchoolSMP.getPlugin(), 0, 20);
     }
 }

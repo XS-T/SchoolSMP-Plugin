@@ -48,7 +48,7 @@ public class WaterCircleCommand implements CommandExecutor {
 
                                     // Apply drowning effect to living entities within the radius
                                     for (Entity entity : circleLocation.getWorld().getNearbyEntities(circleLocation, DROWNING_RADIUS, DROWNING_RADIUS, DROWNING_RADIUS)) {
-                                        if (entity instanceof LivingEntity && !(entity instanceof Player)) {
+                                        if (entity instanceof Player && !entity.equals(player) && entity.getLocation().distanceSquared(circleLocation) <= RADIUS * RADIUS) {
                                             ((LivingEntity) entity).damage(DROWNING_DAMAGE);
                                         }
                                     }

@@ -19,6 +19,7 @@ repositories {
 
 dependencies {
     compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
+    //compileOnly 'me.lucko.luckperms:luckperms-api:4.4'
 }
 
 def targetJavaVersion = 8

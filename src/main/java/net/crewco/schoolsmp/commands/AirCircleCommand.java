@@ -48,8 +48,8 @@ public class AirCircleCommand implements CommandExecutor {
 
                                     // Apply lifting effect to entities within the circle
                                     for (Entity entity : circleLocation.getWorld().getNearbyEntities(circleLocation, LIFT_RADIUS, LIFT_RADIUS, LIFT_RADIUS)) {
-                                        if (entity instanceof LivingEntity && !(entity instanceof Player)) {
-                                            ((LivingEntity) entity).setVelocity(new org.bukkit.util.Vector(0, LIFT_STRENGTH, 0));
+                                        if (entity instanceof Player && !entity.equals(player) && entity.getLocation().distanceSquared(circleLocation) <= RADIUS * RADIUS) {
+                                            (entity).setVelocity(new org.bukkit.util.Vector(0, LIFT_STRENGTH, 0));
                                         }
                                     }
 

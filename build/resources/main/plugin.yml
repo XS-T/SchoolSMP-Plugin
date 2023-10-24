@@ -20,3 +20,9 @@ commands:
   mmc-vanish:
     description: Creates a Magic Circle
     usage: /mmc
+  apply:
+    description: Gives the player the apply command
+    usage: /apply
+  magic-item:
+    description: Give the player magic items
+    usage: /magic-item <magic item>

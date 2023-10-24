@@ -46,7 +46,7 @@ public class FireCircleCommand implements CommandExecutor {
 
                                     // Adjust the height of the circle according to your needs
                                     for (Entity entity : circleLocation.getChunk().getEntities()) {
-                                        if (!(entity instanceof Player) && entity.getLocation().distanceSquared(circleLocation) <= RADIUS * RADIUS) {
+                                        if (entity instanceof Player && !entity.equals(player) && entity.getLocation().distanceSquared(circleLocation) <= RADIUS * RADIUS) {
                                             // Set other entities (mobs, etc.) within the radius on fire for 5 seconds (100 ticks)
                                             entity.setFireTicks(FIRE_TICKS);
                                         }
