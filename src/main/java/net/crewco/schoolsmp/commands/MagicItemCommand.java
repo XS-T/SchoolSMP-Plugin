@@ -30,6 +30,8 @@ public class MagicItemCommand implements CommandExecutor {
                     player.getInventory().addItem(magicItems.VanishMagicItem());
                 } else if (args[0].contains("Portal".toLowerCase())) {
                     player.getInventory().addItem(magicItems.PortalMagicItem());
+                } else if (args[0].contains("Necro".toLowerCase())) {
+                    player.getInventory().addItem(magicItems.NecroMagicItem());
                 }
             }
         }

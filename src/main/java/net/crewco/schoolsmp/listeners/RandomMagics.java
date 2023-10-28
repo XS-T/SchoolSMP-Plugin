@@ -17,7 +17,7 @@ import java.util.Random;
 public class RandomMagics implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
-        List<String> items = Arrays.asList("Air","Water","Fire","Earth","Vanish","Portal");
+        List<String> items = Arrays.asList("Air","Water","Fire","Earth","Vanish","Portal","Necro");
         String randomItem = getRandomItem(items);
         Player player = event.getPlayer();
         MagicItems magicItems = new MagicItems();
@@ -37,11 +37,14 @@ public class RandomMagics implements Listener {
                 player.sendMessage(SchoolSMP.pluginMsg()+"You can control the Earth element");
                 player.getInventory().addItem(magicItems.EarthMagicItem());
             }else if (randomItem.equals("Vanish")){
-                player.sendMessage(SchoolSMP.pluginMsg()+"You have Vanish magic");
+                player.sendMessage(SchoolSMP.pluginMsg()+"You have Vanish magix");
                 player.getInventory().addItem(magicItems.VanishMagicItem());
             } else if (randomItem.equals("Portal")) {
-                player.sendMessage(SchoolSMP.pluginMsg()+"You have Portal magic");
+                player.sendMessage(SchoolSMP.pluginMsg()+"You have Portal magix");
                 player.getInventory().addItem(magicItems.PortalMagicItem());
+            }else if (randomItem.equals("Necro")){
+                player.sendMessage(SchoolSMP.pluginMsg()+"You have Necromancy magix");
+                player.getInventory().addItem(magicItems.NecroMagicItem());
             }
         }
 

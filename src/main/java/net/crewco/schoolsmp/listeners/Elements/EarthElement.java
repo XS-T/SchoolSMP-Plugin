@@ -35,6 +35,10 @@ public class EarthElement implements Listener {
             if (earth_element.hasItemMeta()) {
                 ItemMeta fire_elementItemMeta = earth_element.getItemMeta();
                 if (fire_elementItemMeta.getLore().contains("Earth-Element")) {
+                    if (SchoolSMP.helper().isInRegion(player,"spawn")){
+                        player.sendMessage(SchoolSMP.pluginMsg()+"You can not use magic here");
+                        return;
+                    }
                     if (checkCooldown(player.getName())) {
                         Location center = player.getLocation().clone().add(0, 1, 0);
                         new BukkitRunnable() {
@@ -69,7 +73,7 @@ public class EarthElement implements Listener {
                 }
             }
         }
-    }catch (NullPointerException e){}
+    }catch (NullPointerException ignored){}
     }
 
 

@@ -35,6 +35,10 @@ public class WaterElement implements Listener {
                 if (Water_element.hasItemMeta()) {
                     ItemMeta water_elementItemMeta = Water_element.getItemMeta();
                     if (water_elementItemMeta.getLore().contains("Water-Element")) {
+                        if (SchoolSMP.helper().isInRegion(player,"spawn")){
+                            player.sendMessage(SchoolSMP.pluginMsg()+"You can not use magic here");
+                            return;
+                        }
                         if (checkCooldown(player.getName())) {
                             World world = player.getWorld();
                             Location center = player.getLocation().clone().add(0, 1, 0); // Adjust the height if needed

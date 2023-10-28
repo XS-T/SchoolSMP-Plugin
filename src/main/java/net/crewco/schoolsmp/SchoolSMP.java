@@ -1,22 +1,25 @@
 package net.crewco.schoolsmp;
 
 
+import net.crewco.schoolsmp.Util.WorldGuardHelper;
 import net.crewco.schoolsmp.commands.*;
 import net.crewco.schoolsmp.commands.app_command.ApplicationCommand;
 import net.crewco.schoolsmp.listeners.Elements.*;
+import net.crewco.schoolsmp.listeners.Magixs.NecroMagic;
+import net.crewco.schoolsmp.listeners.Magixs.PortalMagic;
+import net.crewco.schoolsmp.listeners.Magixs.VanishMagic;
 import net.crewco.schoolsmp.listeners.PlayerItemsListener;
+import net.crewco.schoolsmp.listeners.PreventTrade;
 import net.crewco.schoolsmp.listeners.RandomMagics;
 import org.bukkit.ChatColor;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.HashMap;
-import java.util.UUID;
 
 public final class SchoolSMP extends JavaPlugin {
 
     private static SchoolSMP plugin;
     private static String plmsg;
+    private static WorldGuardHelper helper;
+
 
 
 
@@ -25,6 +28,9 @@ public final class SchoolSMP extends JavaPlugin {
         // Plugin startup logic
         plugin = this;
         plmsg = ChatColor.translateAlternateColorCodes('&',"&7[&4SchoolSMP&7]> ");
+        //WorldGuard
+        helper = new WorldGuardHelper();
+
 
         //Elements
         getCommand("mmc-fire").setExecutor(new FireCircleCommand());
@@ -36,14 +42,18 @@ public final class SchoolSMP extends JavaPlugin {
         getCommand("mmc-portal").setExecutor(new TeleportationCircleCommand());
         getCommand("mmc-vanish").setExecutor(new VanishCircleCommand());
 
+        //TestCommands
+        //getCommand("test").setExecutor(new TestCommand());
 
         //Elements Listeners
         getServer().getPluginManager().registerEvents(new FireElement(),this);
         getServer().getPluginManager().registerEvents(new WaterElement(),this);
         getServer().getPluginManager().registerEvents(new EarthElement(),this);
         getServer().getPluginManager().registerEvents(new AirElement(),this);
+        //Magixs
         getServer().getPluginManager().registerEvents(new PortalMagic(),this);
         getServer().getPluginManager().registerEvents(new VanishMagic(),this);
+        getServer().getPluginManager().registerEvents(new NecroMagic(),this);
 
         //Elements Commands
         getCommand("magic-item").setExecutor(new MagicItemCommand());
@@ -54,6 +64,7 @@ public final class SchoolSMP extends JavaPlugin {
         //Events
         getServer().getPluginManager().registerEvents(new RandomMagics(),this);
         getServer().getPluginManager().registerEvents(new PlayerItemsListener(),this);
+        getServer().getPluginManager().registerEvents(new PreventTrade(),this);
 
         //Logger
         getLogger().info("Your plugin has been enabled!");
@@ -65,9 +76,12 @@ public final class SchoolSMP extends JavaPlugin {
         getLogger().info("Your plugin has been disabled!");
     }
 
-
+    //Instance Accesses
     public static SchoolSMP getPlugin() {
         return plugin;
     }
     public static String pluginMsg(){return plmsg;}
+    public static WorldGuardHelper helper(){return helper;}
+
+
 }

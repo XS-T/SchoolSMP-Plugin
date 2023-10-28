@@ -1,4 +1,4 @@
-package net.crewco.schoolsmp.listeners.Elements;
+package net.crewco.schoolsmp.listeners.Magixs;
 
 import net.crewco.schoolsmp.SchoolSMP;
 import org.bukkit.Bukkit;
@@ -37,7 +37,11 @@ public class VanishMagic implements Listener {
             if (VanishMagic != null) {
                 if (VanishMagic.hasItemMeta()) {
                     ItemMeta fire_elementItemMeta = VanishMagic.getItemMeta();
-                    if (fire_elementItemMeta.getLore().contains("Vanish-Magic")) {
+                    if (fire_elementItemMeta.getLore().contains("Vanish-Magix")) {
+                        if (SchoolSMP.helper().isInRegion(player,"spawn")){
+                            player.sendMessage(SchoolSMP.pluginMsg()+"You can not use magixs here");
+                            return;
+                        }
                         if (hiddenPlayers.contains(playerUUID)) {
                             // Player is already hidden, cancel vanish and put them on cooldown
                             hiddenPlayers.remove(playerUUID);

@@ -1,6 +1,7 @@
 package net.crewco.schoolsmp.listeners.Elements;
 
 import net.crewco.schoolsmp.SchoolSMP;
+import net.crewco.schoolsmp.Util.WorldGuardHelper;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -34,6 +35,10 @@ public class FireElement implements Listener {
                 if (fire_element.hasItemMeta()) {
                     ItemMeta fire_elementItemMeta = fire_element.getItemMeta();
                     if (fire_elementItemMeta.getLore().contains("Fire-Element")) {
+                        if (SchoolSMP.helper().isInRegion(player,"spawn")){
+                            player.sendMessage(SchoolSMP.pluginMsg()+"You can not use magic here");
+                            return;
+                        }
                         if (checkCooldown(player.getName())) {
                             World world = player.getWorld();
                             Location center = player.getLocation().clone().add(0, 1, 0); // Adjust the height if needed
@@ -73,11 +78,9 @@ public class FireElement implements Listener {
                             player.sendMessage(SchoolSMP.pluginMsg()+"You must wait " + (COOLDOWN_SECONDS - getCooldown(player.getName())) + " seconds before using this command again!");
                         }
                     }
-
                 }
             }
-        } catch (NullPointerException e) {
-        }
+        } catch (NullPointerException ignored){}
     }
 
     private boolean checkCooldown(String playerName) {

@@ -35,6 +35,10 @@ public class AirElement implements Listener {
                 if (Air_element.hasItemMeta()) {
                     ItemMeta Air_elementItemMeta = Air_element.getItemMeta();
                     if (Air_elementItemMeta.getLore().contains("Air-Element")) {
+                        if (SchoolSMP.helper().isInRegion(player,"spawn")){
+                            player.sendMessage(SchoolSMP.pluginMsg()+"You can not use magic here");
+                            return;
+                        }
                         if (checkCooldown(player.getName())) {
                             World world = player.getWorld();
                             Location center = player.getLocation().clone().add(0, 1, 0); // Adjust the height if needed

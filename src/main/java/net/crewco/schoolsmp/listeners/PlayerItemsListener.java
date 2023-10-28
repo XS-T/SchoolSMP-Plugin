@@ -19,7 +19,6 @@ public class PlayerItemsListener implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event){
         if (event.getEntity() != null){
-            Player player = event.getEntity();
             MagicItems magicItems = new MagicItems();
             for (ItemStack magicItem : magicItems.MagicItemsList()){
                 if (event.getEntity().getInventory().contains(magicItem)){

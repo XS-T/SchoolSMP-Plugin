@@ -62,7 +62,7 @@ public class MagicItems extends ItemStack {
         PortalItemMeta.setDisplayName(ChatColor.DARK_PURPLE+"PortalMagic");
         PortalItemMeta.addEnchant(Enchantment.ARROW_INFINITE,0,true);
         PortalItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        PortalItemMeta.setLore(Collections.singletonList("Portal-Magic"));
+        PortalItemMeta.setLore(Collections.singletonList("Portal-Magix"));
         PortalItem.setItemMeta(PortalItemMeta);
         return PortalItem;
     }
@@ -73,9 +73,20 @@ public class MagicItems extends ItemStack {
         VanishItemMeta.setDisplayName(ChatColor.GRAY+"VanishMagic");
         VanishItemMeta.addEnchant(Enchantment.ARROW_INFINITE,0,true);
         VanishItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        VanishItemMeta.setLore(Collections.singletonList("Vanish-Magic"));
+        VanishItemMeta.setLore(Collections.singletonList("Vanish-Magix"));
         VanishItem.setItemMeta(VanishItemMeta);
         return VanishItem;
+    }
+
+    public ItemStack NecroMagicItem(){
+        ItemStack NecroItem = new ItemStack(Material.ENCHANTED_BOOK);
+        ItemMeta NecroItemMeta = NecroItem.getItemMeta();
+        NecroItemMeta.setDisplayName(ChatColor.GRAY+"Necromancy");
+        NecroItemMeta.addEnchant(Enchantment.ARROW_INFINITE,0,true);
+        NecroItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        NecroItemMeta.setLore(Collections.singletonList("Necro-Magix"));
+        NecroItem.setItemMeta(NecroItemMeta);
+        return NecroItem;
     }
 
     public List<ItemStack> MagicItemsList (){

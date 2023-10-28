@@ -1,4 +1,4 @@
-package net.crewco.schoolsmp.listeners.Elements;
+package net.crewco.schoolsmp.listeners.Magixs;
 
 import net.crewco.schoolsmp.SchoolSMP;
 import org.bukkit.Bukkit;
@@ -35,11 +35,14 @@ public class PortalMagic implements Listener {
     public void onInventoryClick(PlayerInteractEvent event) {
         Player player = (Player) event.getPlayer();
         ItemStack clickedItem = event.getItem();
-
         if (clickedItem != null ) {
             if (clickedItem.hasItemMeta()){
                 ItemMeta meta = clickedItem.getItemMeta();
-                if (meta.getLore().contains("Portal-Magic")){
+                if (meta.getLore().contains("Portal-Magix")){
+                    if (SchoolSMP.helper().isInRegion(player,"spawn")){
+                        player.sendMessage(SchoolSMP.pluginMsg()+"You can not use magic here");
+                        return;
+                    }
                     event.setCancelled(true);
                     if (checkCooldown(player.getName())) {
                         player.sendMessage(SchoolSMP.pluginMsg()+"Please enter the teleportation coordinates in chat (x y z [world][radius]):");
@@ -57,8 +60,13 @@ public class PortalMagic implements Listener {
         Player player = event.getPlayer();
         if (teleportationRequests.containsKey(player)) {
             event.setCancelled(true);
+            if (SchoolSMP.helper().isInRegion(player,"spawn")){
+                player.sendMessage(SchoolSMP.pluginMsg()+"You can not use magic here");
+                return;
+            }
 
             String[] input = event.getMessage().split(" ");
+
             if (input.length >= 3) {
                 try {
                     double x = Double.parseDouble(input[0]);
@@ -87,11 +95,15 @@ public class PortalMagic implements Listener {
                         if (nearbyEntity instanceof Player) {
                             Player nearbyPlayer = (Player) nearbyEntity;
                             if (!nearbyPlayer.equals(player)) {
+                                if (SchoolSMP.helper().isInRegion(nearbyPlayer,"spawn")){
+                                    player.sendMessage(SchoolSMP.pluginMsg()+"You can not use magixs here");
+                                    return;
+                                }
                                 teleportPlayerSync(nearbyPlayer, teleportLocation);
                                 nearbyPlayer.sendMessage(SchoolSMP.pluginMsg()+"You have been teleported to the specified location.");
                                 playPortalParticles(nearbyPlayer.getLocation());
                             }
-                        } else if (nearbyEntity instanceof LivingEntity && !(nearbyEntity instanceof Player)) {
+                        } else if (nearbyEntity instanceof LivingEntity) {
                             LivingEntity livingEntity = (LivingEntity) nearbyEntity;
                             teleportEntitySync(livingEntity, teleportLocation);
                             playPortalParticles(livingEntity.getLocation());

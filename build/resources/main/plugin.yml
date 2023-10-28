@@ -1,6 +1,9 @@
 name: SchoolSMP
 version: '1.0-SNAPSHOT'
 main: net.crewco.schoolsmp.SchoolSMP
+depend:
+  - WorldGuard
+  - WorldEdit
 commands:
   mmc-fire:
     description: Creates a Magic Circle
@@ -26,3 +29,6 @@ commands:
   magic-item:
     description: Give the player magic items
     usage: /magic-item <magic item>
+  test:
+    description: Test command
+    usage: /test
